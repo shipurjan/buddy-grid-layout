@@ -26,14 +26,14 @@ const availableHandles = ["s", "w", "e", "n", "sw", "nw", "se", "ne"];
 export default class ShowcaseLayout extends React.Component<Props, State> {
   static defaultProps: Props = {
     className: "layout",
-    rowHeight: 30,
+    rowHeight: 80,
     onLayoutChange: function() {},
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
   };
 
   state: State = {
     currentBreakpoint: "lg",
-    compactType: "vertical",
+    compactType: "horizontal",
     resizeHandles: ['se'],
     mounted: false,
     layouts: { lg: generateLayout(['se']) }
@@ -140,15 +140,13 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
 }
 
 function generateLayout(resizeHandles) {
-  return _.map(_.range(0, 25), function(item, i) {
-    var y = Math.ceil(Math.random() * 4) + 1;
+  return _.map(_.range(0, 21), function(item, i) {
     return {
-      x: Math.round(Math.random() * 5) * 2,
-      y: Math.floor(i / 6) * y,
-      w: 2,
-      h: y,
+      x: 0,
+      y: 0,
+      w: 1,
+      h: 1,
       i: i.toString(),
-      static: Math.random() < 0.05,
       resizeHandles
     };
   });
