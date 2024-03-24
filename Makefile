@@ -2,9 +2,12 @@
 
 EXEC = npm exec --
 DIST = ./dist
+CSS = ./css
+RELEASE = ./release
 BUILD = ./build
 LIB = ./lib
 TEST = ./test
+TEMP = ../temp39827489274897
 MIN = $(DIST)/react-grid-layout.min.js
 MIN_MAP = $(DIST)/react-grid-layout.min.js.map
 
@@ -46,8 +49,8 @@ view-example:
 
 # FIXME flow is usually global
 lint:
-	@$(EXEC) flow
-	@$(EXEC) eslint --ext .js,.jsx
+	@$(EXEC) yarn run flow
+	@$(EXEC) yarn run eslint --ext .js,.jsx
 
 test:
 	env NODE_ENV=test $(EXEC) jest --coverage
@@ -66,6 +69,19 @@ release-minor: build lint test
 
 release-major: build lint test
 	@$(call release,major)
+	
+release-git: build lint
+	BRANCH=$(git branch --show-current)
+	git rm -rf --cached .
+	git add -f $(DIST) $(CSS) $(BUILD) $(LIB)
+	git add -f Makefile package.json README.md LICENSE CHANGELOG.md index.js index.js.flow .prettierrc .prettierignore .flowconfig .eslintignore .browserslistrc .babelrc.js
+	git branch -D ${VERSION}
+	git checkout -b ${VERSION}
+	git commit -m "Release $(VERSION)"
+	git push -uf origin ${VERSION}
+	git checkout ${BRANCH} -f
+	git rm -rf --cached .
+	git add .
 
 publish:
 	git push --tags origin HEAD:master
@@ -86,3 +102,4 @@ define release
 	git tag "$$NEXT_VERSION" -m "release $$NEXT_VERSION"
 	npm pack --dry-run
 endef
+
