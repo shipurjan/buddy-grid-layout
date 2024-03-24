@@ -3,33 +3,50 @@
 -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <script src="<%= base %>/commons.js"></script>
-    <script src="<%= base %>/<%= index %>-<%= source %>.js"></script>
-    <style>body { padding: 20px; }</style>
-    <title>RGL Example <%= index %> - <%= title %></title>
-  </head>
-  <body>
-    <h3>React-Grid-Layout
-      <a href="https://www.npmjs.com/package/react-grid-layout/v/<%= version %>">v<%= version %></a>
-      Demo <%= index %> - <%= title %>
-    </h3>
-    <ul>
-      <li><a href="https://github.com/react-grid-layout/react-grid-layout">View project on GitHub</a></li>
-      <li><a href="https://github.com/react-grid-layout/react-grid-layout/blob/master/test/examples/<%= index %>-<%= source %>.jsx">View this example's source</a></li>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="<%= base %>/commons.js"></script>
+  <script src="<%= base %>/<%= index %>-<%= source %>.js"></script>
+  <style>
+    body {
+      padding: 20px;
+    }
+  </style>
+  <title>RGL Example <%= index %> - <%= title %>
+  </title>
+</head>
+
+<body>
+  <h3>Buddy-Grid-Layout (React-Grid-Layout fork with top-left compacting)
+    <a href="https://www.npmjs.com/package/react-grid-layout/v/<%= version %>">v<%= version %></a>
+    Demo <%= index %> - <%= title %>
+  </h3>
+  <h4>
+    Based on <a href="https://github.com/nitesh619">nitesh619</a>'s <a
+      href="https://github.com/react-grid-layout/react-grid-layout/issues/1100#issuecomment-583741129">solution</a> for
+    top-left compacting
+  </h4>
+  <ul>
+    <li><a href="https://github.com/shipurjan/buddy-grid-layout">View project on GitHub</a></li>
+    <li><a
+        href="https://github.com/shipurjan/buddy-grid-layout/blob/1.4.4-compact-left-dev/test/examples/<%= index %>-<%= source %>.jsx">View
+        this example's source</a></li>
     <%_ if (previous) { -%>
-      <li><a href="<%= index - 1 %>-<%= previous.source %>.html"><b>⇠</b> View the previous example: "<%= previous.title %>"</a></li>
-    <%_ } else { -%>
-      <li><b>⇠</b></li>
+      <li><a href="<%= index - 1 %>-<%= previous.source %>.html"><b>⇠</b> View the previous example: "<%= previous.title
+            %>"</a></li>
+      <%_ } else { -%>
+        <li><b>⇠</b></li>
+        <%_ } -%>
+          <%_ if (next) { -%>
+            <li><a href="<%= index + 1 %>-<%= next.source %>.html"><b>⇢ </b>View the next example: "<%= next.title %>
+                  "</a></li>
+            <%_ } -%>
+  </ul>
+  <%_ for(var i=0; i < paragraphs.length; i++) { -%>
+    <p><%- paragraphs[i] %></p>
     <%_ } -%>
-    <%_ if (next) { -%>
-      <li><a href="<%= index + 1 %>-<%= next.source %>.html"><b>⇢ </b>View the next example: "<%= next.title %>"</a></li>
-    <%_ } -%>
-    </ul>
-    <%_ for(var i = 0; i < paragraphs.length; i++) { -%>
-       <p><%- paragraphs[i] %></p>
-    <%_ } -%>
-    <div id="content"></div>
-  </body>
+      <div id="content"></div>
+</body>
+
 </html>
