@@ -144,8 +144,8 @@ function generateLayout(resizeHandles) {
     return {
       x: 0,
       y: 0,
-      w: 1,
-      h: 1,
+      w: Math.floor(Math.random() * 2) + 1,
+      h: Math.floor(Math.random() * 2) + 1,
       i: i.toString(),
       resizeHandles
     };
