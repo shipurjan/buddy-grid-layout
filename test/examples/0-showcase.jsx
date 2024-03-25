@@ -46,7 +46,9 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
   generateDOM(): ReactChildren {
     return _.map(this.state.layouts.lg, function(l, i) {
       return (
-        <div key={i} className={l.static ? "static" : ""}>
+        <div key={i} className={l.static ? "static" : ""} style={{
+          userSelect: "none"
+        }}>
           {l.static ? (
             <span
               className="text"
