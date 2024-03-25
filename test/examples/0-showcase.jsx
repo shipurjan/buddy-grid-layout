@@ -140,7 +140,7 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
 }
 
 function generateLayout(resizeHandles) {
-  return _.map(_.range(0, 21), function(item, i) {
+  return _.map(_.range(0, 60), function(item, i) {
     return {
       x: 0,
       y: 0,
